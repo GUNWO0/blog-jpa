@@ -11,7 +11,8 @@ public class UserService {
 
     @Transactional
     public void 회원가입(UserRequest.JoinDTO joinDTO) {
-        userRepository.save(joinDTO.getUsername(), joinDTO.getPassword(), joinDTO.getEmail());
+
+        userRepository.save(joinDTO.toEntity());
     }
 
     public User 로그인(UserRequest.LoginDTO loginDTO) {
