@@ -9,6 +9,7 @@ import shop.mtcoding.blog.user.User;
 
 import java.sql.Timestamp;
 
+
 @NoArgsConstructor
 @Getter
 @Table(name = "board_tb")
@@ -22,7 +23,7 @@ public class Board {
     private Boolean isPublic;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private User user; // ORM
 
     @CreationTimestamp
     private Timestamp createdAt;
