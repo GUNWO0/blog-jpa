@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class LoveRepository {
     private final EntityManager em;
 
-    public Love findByUserIdAndBoardId(int userId, long boardId) {
+    public Love findByUserIdAndBoardId(Integer userId, Integer boardId) {
         Query query = em.createQuery("select lo from Love lo where lo.user.id = :userId and lo.board.id = :boardId", Love.class);
         query.setParameter("userId", userId);
         query.setParameter("boardId", boardId);
