@@ -16,6 +16,20 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void findByIdJoinUser_test() {
+        // given
+        int boardId = 1;
+
+        // when
+        Board board = boardRepository.findByIdJoinUser(boardId);
+
+        // eye (확인용 출력)
+        System.out.println("게시글 제목: " + board.getTitle());
+        System.out.println("작성자 이름: " + board.getUser().getUsername());
+    }
+
+
+    @Test
     public void findAll_test() {
         // given
         Integer userId = null;
@@ -35,7 +49,6 @@ public class BoardRepositoryTest {
 //        System.out.println("--------------------");
 //        boardList.get(0).getUser().getUsername();
 //        System.out.println("--------------------");
-
 
     }
 }

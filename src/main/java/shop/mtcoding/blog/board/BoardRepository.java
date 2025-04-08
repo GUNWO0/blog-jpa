@@ -12,6 +12,16 @@ import java.util.List;
 public class BoardRepository {
     private final EntityManager em;
 
+    public Board findByIdJoinUser(int id) {
+        Query query = em.createQuery("select b from Board b join fetch b.user u where b.id = :id"); // on 절 생략가능, fetch b.user에 있는 내용을 다 프로젝션
+        query.setParameter("id", id);
+        return (Board) query.getSingleResult();
+    }
+
+    public Board findByID(Integer id) {
+        return em.find(Board.class, id);
+    }
+
     public List<Board> findAll(Integer userId) {
         String s1 = "select b from Board b where b.isPublic = true or b.user.id = :userId order by b.id desc";
         String s2 = "select b from Board b where b.isPublic = true order by b.id desc";
