@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 public class BoardResponse {
 
+    // 상세보기 화면에 필요한 데이터
     @Data
     public static class DetailDTO {
         private Integer id;
@@ -17,18 +18,20 @@ public class BoardResponse {
         private Integer loveCount;
         private String username;
         private Timestamp createdAt;
+        private Integer loveId;
 
-        public DetailDTO(Board board, Integer sessionUserId, Boolean isLove, Integer loveCount) {
+        public DetailDTO(Board board, Integer sessionUserId, Boolean isLove, Integer loveCount, Integer loveId) {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
             this.isPublic = board.getIsPublic();
-            this.isOwner = sessionUserId == board.getUser().getId(); // null 안전하게 처리
+            this.isOwner = sessionUserId == board.getUser().getId();
             this.username = board.getUser().getUsername();
             this.createdAt = board.getCreatedAt();
             this.isLove = isLove;
             this.loveCount = loveCount;
-
+            this.loveId = loveId;
         }
     }
+
 }

@@ -30,5 +30,19 @@ public class LoveRepository {
     }
 
 
+    public Love save(Love love) {
+        em.persist(love);
+        return love;
+    }
+
+    public void deleteById(Integer id) {
+        em.createQuery("delete from Love lo where lo.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
+
+    public Love findById(Integer id) {
+        return em.find(Love.class, id);
+    }
 }
 
