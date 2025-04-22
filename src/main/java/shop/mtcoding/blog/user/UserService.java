@@ -23,6 +23,7 @@ public class UserService {
         } catch (Exception e) {
             throw new Exception400("잘못된 요청입니다");
         }
+
     }
 
     public User 로그인(UserRequest.LoginDTO loginDTO) {

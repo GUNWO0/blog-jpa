@@ -21,7 +21,7 @@ public class LoveController {
 
         return Resp.ok(respDTO);
     }
-
+    
 
     @DeleteMapping("/api/love/{id}")
     public Resp<?> deleteLove(@PathVariable("id") Integer id) {

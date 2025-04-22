@@ -56,18 +56,22 @@ public class RegexTest {
         System.out.println("테스트 : " + result);
     }
 
-    // 영어 소문자 대문자 숫자 특수문자가 포함되어야하고 최소 2자부터 20자 사이여야한다.
+    // 소문자,대문자,숫자,특수문자가 포함되어야 하고, 최소 6자부터 20자 사이여야 한다.
     @Test
-    public void password_test() throws Exception {
-        String password = "Test 1 23!";
-        boolean result = Pattern.matches("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=\\-{}\\[\\]:;\"'<>,.?/])[a-zA-Z\\d!@#$%^&*()_+=\\-{}\\[\\]:;\"'<>,.?/]{8,20}$", password);
+    public void password_test() {
+        String password = "....Ab   1@";
+
+        // 정규식: 소문자, 대문자, 숫자, 특수문자 각 1개 이상 포함, 길이 2~20자
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()])[a-zA-Z\\d!@#$%^&*()]{6,20}$";
+
+        Boolean result = Pattern.matches(regex, password);
         System.out.println("테스트 : " + result);
     }
 
 
     @Test
     public void user_username_test() throws Exception {
-        String username = "ssar88";
+        String username = "ssar";
         // String username = "ssa^";
         boolean result = Pattern.matches("^[a-zA-Z0-9]{2,20}$", username);
         System.out.println("테스트 : " + result);
@@ -75,8 +79,8 @@ public class RegexTest {
 
     @Test
     public void user_email_test() throws Exception {
-        String email = "s...s@fGf.ccm";
-        // String username = "@fGf.ccm"; // +를 *로 변경해보기
+        String email = "s...s@fGf.com";
+        // String username = "@fGf.com"; // +를 *로 변경해보기
         boolean result = Pattern.matches("^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,3}$", email);
         System.out.println("테스트 : " + result);
     }

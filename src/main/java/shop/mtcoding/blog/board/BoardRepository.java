@@ -28,7 +28,22 @@ public class BoardRepository {
         return em.find(Board.class, id);
     }
 
-    // select * from board_tb limit 3, 3;
+    // 1.로그인 안했을때 -> 4개 (완료)
+    // 2.1로그인 했을때  -> ssar -> 5개
+    // 2.2로그인 했을때  -> ssar이 아니면 -> 4개
+    // 그룹함수 -> Long
+    public Long totalCount() {
+        Query query = em.createQuery("select count(b) from Board b where b.isPublic = true", Long.class);
+        return (Long) query.getSingleResult();
+    }
+
+    public Long totalCount(int userId) {
+        Query query = em.createQuery("select count(b) from Board b where b.isPublic = true or b.user.id = :userId", Long.class);
+        query.setParameter("userId", userId);
+        return (Long) query.getSingleResult();
+    }
+
+    // locahost:8080?page=0
     public List<Board> findAll(int page) {
         String sql = "select b from Board b where b.isPublic = true order by b.id desc";
         Query query = em.createQuery(sql, Board.class);
@@ -47,7 +62,12 @@ public class BoardRepository {
         return query.getResultList();
     }
 
-
+//    public List<Board> findAll() {
+//        String sql = "select b from Board b where b.isPublic = true order by b.id desc";
+//        Query query = em.createQuery(sql, Board.class);
+//        return query.getResultList();
+//    }
+//
 //    public List<Board> findAll(Integer userId) {
 //        String sql = "select b from Board b where b.isPublic = true or b.user.id = :userId order by b.id desc";
 //        Query query = em.createQuery(sql, Board.class);

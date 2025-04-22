@@ -9,7 +9,7 @@ public class LoveRequest {
 
     @Data
     public static class SaveDTO {
-        @NotEmpty(message = "board의 ID가 전달되어야합니다")
+        @NotEmpty(message = "board의 id가 전달되어야 합니다")
         private Integer boardId;
 
         public Love toEntity(Integer sessionUserId) {
